@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Nav from './(components)/Nav'
 
-import { config } from "@fortawesome/fortawesome-svg-core"
+import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 
 config.autoAddCss = false;
