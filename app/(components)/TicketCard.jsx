@@ -17,8 +17,16 @@ const TicketCard = () => {
       <p className="whitespace-pre-wrap">
         This is the ticket description! Please do the ticket.
       </p>
-      <ProgressDisplay />
-      <StatusDisplay />
+      <div className="flex-grow"></div>
+      <div className="flex mt-2">
+        <div className="flex flex-col">
+          <p className="text-xs my-1">08.11.23 10:34PM</p>
+          <ProgressDisplay />
+        </div>
+        <div className="ml-auto flex items-end">
+          <StatusDisplay />
+        </div>
+      </div>
     </div>
   );
 };
