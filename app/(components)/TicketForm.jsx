@@ -3,21 +3,35 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const handleChange = (e) => {
-  const value = e.target.value;
-  const name = e.target.name;
-
-  setFormData((prevState) => ({
-    ...prevState,
-    [name]: value,
-  }));
-};
-
-const handleSubmit = () => {
-  console.log("submitted.");
-};
-
 const TicketForm = () => {
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("api/Tickets", {
+      method: "POST",
+      body: JSON.stringify({ formData }),
+      "content-type": "applicaction/json",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to create Ticket.");
+    }
+
+    router.refresh();
+    router.push("/");
+  };
+
   const startingTicketData = {
     title: "",
     description: "",
@@ -28,6 +42,7 @@ const TicketForm = () => {
   };
 
   const [formData, setFormData] = useState(startingTicketData);
+
   return (
     <div className="flex justify-center">
       <form
